@@ -109,7 +109,9 @@ public class FlutterWebviewPlugin implements MethodCallHandler, PluginRegistry.A
 
         FrameLayout.LayoutParams params = buildLayoutParams(call);
 
-        activity.addContentView(webViewManager.webView, params);
+        if (webViewManager.webView.getParent() == null) {
+            activity.addContentView(webViewManager.webView, params);
+        }
 
         webViewManager.openUrl(withJavascript,
                 clearCache,
